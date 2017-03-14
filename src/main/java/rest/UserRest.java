@@ -1,16 +1,14 @@
-package main.rest;
+package main.java.rest;
 
-import main.domain.Kweet;
-import main.domain.User;
-import main.service.KweetService;
-import main.service.UserService;
+import main.java.domain.User;
+import main.java.service.UserService;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Kevin.

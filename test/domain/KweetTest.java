@@ -1,13 +1,14 @@
 package domain;
 
 import junit.framework.TestCase;
-import main.domain.Kweet;
-import main.domain.Tag;
-import main.domain.User;
+import main.java.domain.Kweet;
+import main.java.domain.Tag;
+import main.java.domain.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Kevin
@@ -28,7 +29,7 @@ public class KweetTest extends TestCase  {
         Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
         User lover = new User(1, "picute.jpg","Mr Lover", "Loves everything","Adam","www.ashleymadison.com");
 
-        ArrayList<User> lovers = testKweet.getLovers();
+        List<User> lovers = testKweet.getLovers();
         assertEquals(lovers.size(), 0);
 
         testKweet.addLover(lover);

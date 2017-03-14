@@ -1,20 +1,17 @@
-package main.rest;
+package main.java.rest;
 
-import main.domain.Kweet;
-import main.domain.Tag;
-import main.domain.User;
-import main.service.KweetService;
-import main.service.TagService;
-import main.service.UserService;
+import main.java.domain.Kweet;
+import main.java.domain.User;
+import main.java.service.KweetService;
+import main.java.service.TagService;
+import main.java.service.UserService;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +30,9 @@ public class KweetRest {
 
     @Inject
     TagService tagService;
+
+    public KweetRest() {
+    }
 
     @GET
     public ArrayList<Kweet> getAllKweets(){

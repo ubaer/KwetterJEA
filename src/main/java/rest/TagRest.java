@@ -1,32 +1,41 @@
-package main.rest;
+package main.java.rest;
 
 /**
  * Created by Kevin.
  */
 
-import main.domain.Kweet;
-import main.domain.Tag;
-import main.service.TagService;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+import main.java.domain.Kweet;
+import main.java.domain.Tag;
+import main.java.service.TagService;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Path("tag")
 @Produces(MediaType.APPLICATION_JSON)
+@Stateless
 public class TagRest {
     @Inject
     TagService tagService;
 
     @GET
-    public ArrayList<Tag> getAllTags(){
+    public List<Tag> getAllTags(){
         return tagService.getAllTags();
     }
 
     @GET
     @Path("{tagName}")
-    public ArrayList<Kweet> getKweetsByTag(@PathParam("tagName")String tagName){
+    public List<Kweet> getKweetsByTag(@PathParam("tagName")String tagName){
         Tag foundTag = tagService.getTagByName(tagName);
         if(foundTag != null){
             return tagService.getAllKweetsByTag(foundTag);

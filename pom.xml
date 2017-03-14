@@ -42,6 +42,36 @@
       <version>2.6.6</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet-core -->
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet-core</artifactId>
+      <version>2.26-b03</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-server -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.19</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.6.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>Kwetter</finalName>

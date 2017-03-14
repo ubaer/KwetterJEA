@@ -1,9 +1,8 @@
 package domain;
 
 import junit.framework.TestCase;
-import main.domain.Kweet;
-import main.domain.User;
-import sun.util.resources.cldr.aa.CalendarData_aa_DJ;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import java.util.*;
 
@@ -29,7 +28,7 @@ public class UserTest extends TestCase {
 
         testUser.addFollower(newFollower);
 
-        ArrayList<User> followers = testUser.getFollowers();
+        List<User> followers = testUser.getFollowers();
         assertEquals(1, followers.size());
         assertEquals(newFollower, followers.get(0));
     }
@@ -50,7 +49,7 @@ public class UserTest extends TestCase {
 
         testUser.addFollows(newFollows);
 
-        ArrayList<User> follows = testUser.getFollows();
+        List<User> follows = testUser.getFollows();
         assertEquals(1, follows.size());
         assertEquals(newFollows, follows.get(0));
     }

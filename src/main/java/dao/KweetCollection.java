@@ -1,7 +1,7 @@
-package main.dao;
+package main.java.dao;
 
-import main.domain.Kweet;
-import main.domain.User;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
  */
 @Stateless @Default
 public class KweetCollection implements KweetDao {
+
+    public KweetCollection() {
+    }
 
     ArrayList<Kweet> kweets = new ArrayList<>();
 

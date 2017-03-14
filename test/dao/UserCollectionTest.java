@@ -1,9 +1,9 @@
-package doa;
+package dao;
 
 import junit.framework.TestCase;
-import main.dao.UserCollection;
-import main.dao.UserDao;
-import main.domain.User;
+import main.java.dao.UserCollection;
+import main.java.dao.UserDao;
+import main.java.domain.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;

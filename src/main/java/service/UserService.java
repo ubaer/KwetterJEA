@@ -1,9 +1,12 @@
-package main.service;
+package main.java.service;
 
-import main.dao.UserDao;
-import main.domain.User;
+import main.java.dao.JPA;
+import main.java.dao.UserDao;
+import main.java.domain.User;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
@@ -12,7 +15,12 @@ import java.util.ArrayList;
  */
 @Stateless
 public class UserService {
+
+    public UserService(){
+    }
+
     @Inject
+    @Default
     private UserDao userDao;
 
     public void addUser(User user){

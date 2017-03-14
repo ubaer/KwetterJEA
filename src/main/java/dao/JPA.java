@@ -1,4 +1,4 @@
-package main.dao;
+package main.java.dao;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Retention;

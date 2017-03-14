@@ -1,10 +1,10 @@
-package doa;
+package dao;
 
 import junit.framework.TestCase;
-import main.dao.KweetCollection;
-import main.dao.KweetDao;
-import main.domain.Kweet;
-import main.domain.User;
+import main.java.dao.KweetCollection;
+import main.java.dao.KweetDao;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;

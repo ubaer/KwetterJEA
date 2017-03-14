@@ -1,9 +1,10 @@
-package main.dao;
+package main.java.dao;
 
-import main.domain.Kweet;
-import main.domain.Tag;
+import main.java.domain.Kweet;
+import main.java.domain.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin.
@@ -39,5 +40,5 @@ public interface TagDao {
      * @param tag
      * @return
      */
-    ArrayList<Kweet> getAllKweetsByTag(Tag tag);
+    List<Kweet> getAllKweetsByTag(Tag tag);
 }

@@ -1,7 +1,7 @@
-package main.dao;
+package main.java.dao;
 
-import main.domain.Kweet;
-import main.domain.User;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -12,10 +12,12 @@ import java.util.Optional;
 /**
  * Created by Kevin
  */
-@Stateless
-@Default
+@Stateless @Default
 public class UserCollection implements UserDao {
     ArrayList<User> users = new ArrayList<User>();
+
+    public UserCollection() {
+    }
 
     @Override
     public void addUser(User user) {

@@ -1,11 +1,10 @@
 package domain;
 
 import junit.framework.TestCase;
-import main.domain.Kweet;
-import main.domain.Tag;
-import main.domain.User;
+import main.java.domain.Kweet;
+import main.java.domain.Tag;
+import main.java.domain.User;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**

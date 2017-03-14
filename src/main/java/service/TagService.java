@@ -1,19 +1,28 @@
-package main.service;
+package main.java.service;
 
-import main.dao.TagDao;
-import main.domain.Kweet;
-import main.domain.Tag;
+import main.java.dao.JPA;
+import main.java.dao.TagDao;
+import main.java.domain.Kweet;
+import main.java.domain.Tag;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin.
  */
 @Stateless
 public class TagService {
+
+    public TagService(){
+    }
+
     @Inject
+    @Default
     private TagDao tagDao;
 
     public void addTag(Tag tag){
@@ -28,7 +37,7 @@ public class TagService {
         return tagDao.getAllTags();
     }
 
-    public ArrayList<Kweet> getAllKweetsByTag(Tag tag){
+    public List<Kweet> getAllKweetsByTag(Tag tag){
         return tagDao.getAllKweetsByTag(tag);
     }
 

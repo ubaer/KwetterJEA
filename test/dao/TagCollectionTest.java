@@ -1,9 +1,9 @@
-package doa;
+package dao;
 
 import junit.framework.TestCase;
-import main.dao.TagCollection;
-import main.dao.TagDao;
-import main.domain.Tag;
+import main.java.dao.TagCollection;
+import main.java.dao.TagDao;
+import main.java.domain.Tag;
 
 import java.util.ArrayList;
 import java.util.Arrays;

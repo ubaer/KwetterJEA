@@ -1,7 +1,7 @@
-package main.dao;
+package main.java.dao;
 
-import main.domain.Kweet;
-import main.domain.User;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by Kevin.
  */
 public interface KweetDao {
+
     /**
      * Adds a Kweet to the dao
      * @param kweet

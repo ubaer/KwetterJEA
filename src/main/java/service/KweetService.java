@@ -1,10 +1,12 @@
-package main.service;
+package main.java.service;
 
-import main.dao.KweetDao;
-import main.domain.Kweet;
-import main.domain.User;
+import main.java.dao.JPA;
+import main.java.dao.KweetDao;
+import main.java.domain.Kweet;
+import main.java.domain.User;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
@@ -13,8 +15,13 @@ import java.util.ArrayList;
  */
 @Stateless
 public class KweetService {
+
     @Inject
+    @Default
     private KweetDao kweetDao;
+
+    public KweetService() {
+    }
 
     public void addKweet(Kweet kweet){
         kweetDao.addKweet(kweet);
