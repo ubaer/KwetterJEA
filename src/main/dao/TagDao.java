@@ -27,5 +27,10 @@ public interface TagDao {
      */
     ArrayList<Tag> getAllTags();
 
+    /**
+     * Gets all the Kweets linked to the tag
+     * @param tag
+     * @return
+     */
     ArrayList<Kweet> getAllKweetsByTag(Tag tag);
 }
