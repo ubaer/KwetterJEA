@@ -7,8 +7,14 @@ import java.util.ArrayList;
  * Created by Kevin
  */
 public class Tag {
+    public String getName() {
+        return name;
+    }
+
     String name;
     ArrayList<Kweet>kweets;
+
+    public Tag(){}
 
     public Tag(String name) {
         this.name = name;

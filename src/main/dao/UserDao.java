@@ -1,8 +1,10 @@
 package main.dao;
 
+import main.domain.Kweet;
 import main.domain.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin
@@ -47,4 +49,16 @@ public interface UserDao {
      * @return ArrayList of all the users
      */
     ArrayList<User> getAllUsers();
+
+    /**
+     * Gets the users timeline
+     * @return List of all the Kweets
+     */
+    List<Kweet> getUserTimeline(User user, int amountOfPosts);
+
+    /**
+     * Gets the users recent Kweets
+     * @return List of all the Kweets
+     */
+    List<Kweet> getUserRecentKweets(User user, int amountOfPosts);
 }

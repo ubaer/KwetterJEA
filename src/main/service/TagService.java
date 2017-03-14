@@ -31,4 +31,7 @@ public class TagService {
     public ArrayList<Kweet> getAllKweetsByTag(Tag tag){
         return tagDao.getAllKweetsByTag(tag);
     }
+
+    public Tag getTagByName(String tagName){ return tagDao.getTagByName(tagName);
+    }
 }

@@ -1,28 +1,37 @@
 package main.dao;
 
+import main.domain.Kweet;
 import main.domain.User;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Kevin on 13-3-2017.
+ * Created by Kevin
  */
+@Stateless
+@Default
 public class UserCollection implements UserDao {
     ArrayList<User> users = new ArrayList<User>();
 
+    @Override
     public void addUser(User user) {
-        if(!users.contains(user)) {
+        if (!users.contains(user)) {
             users.add(user);
         }
     }
 
+    @Override
     public void removeUser(User user) {
         if(users.contains(user)){
             users.remove(user);
         }
     }
 
+    @Override
     public boolean changeUsername(User user, String newName) {
         if(users.contains(user)){
             // First check if username is not taken yet.
@@ -37,6 +46,7 @@ public class UserCollection implements UserDao {
         return false;
     }
 
+    @Override
     public User findById(long id) {
         Optional<User> foundUser = users.stream().filter(user -> user.getId() == id).findFirst();
         User returnUser = null;
@@ -47,6 +57,7 @@ public class UserCollection implements UserDao {
         return returnUser;
     }
 
+    @Override
     public User findByName(String name) {
         Optional<User> foundUser = users.stream().filter(user -> user.getName().equals(name)).findFirst();
         User returnUser = null;
@@ -57,8 +68,19 @@ public class UserCollection implements UserDao {
         return returnUser;
     }
 
+    @Override
     public ArrayList<User> getAllUsers() {
         return users;
+    }
+
+    @Override
+    public List<Kweet> getUserTimeline(User user, int amountOfPosts) {
+        return user.getTimeLine(amountOfPosts);
+    }
+
+    @Override
+    public List<Kweet> getUserRecentKweets(User user, int amountOfPosts){
+        return user.getRecentKweets(amountOfPosts);
     }
 }
 

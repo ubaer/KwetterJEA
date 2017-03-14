@@ -35,6 +35,29 @@ public class Kweet {
     ArrayList<User>lovers;
     ArrayList<Tag>tags;
 
+    public Kweet(User poster, String message, ArrayList<Tag> tags, ArrayList<User> mentions) {
+        this.message = message;
+        this.poster = poster;
+        this.date = new Date();
+        this.tags = tags;
+        this.mentions = mentions;
+        this.lovers = new ArrayList<>();
+
+        if(tags == null){
+            this.tags = new ArrayList<>();
+        }
+
+        if(mentions == null){
+            this.mentions = new ArrayList<>();
+        }
+
+        for (Tag tag : this.tags) {
+            tag.addKweet(this);
+        }
+
+        poster.addKweet(this);
+    }
+
     public Kweet(long id, String message, Date date, User poster, ArrayList<Tag> tags, ArrayList<User> mentions) {
         this.id = id;
         this.message = message;
@@ -42,14 +65,14 @@ public class Kweet {
         this.poster = poster;
         this.tags = tags;
         this.mentions = mentions;
-        this.lovers = new ArrayList<User>();
+        this.lovers = new ArrayList<>();
 
         if(tags == null){
-            this.tags = new ArrayList<Tag>();
+            this.tags = new ArrayList<>();
         }
 
         if(mentions == null){
-            this.mentions = new ArrayList<User>();
+            this.mentions = new ArrayList<>();
         }
 
         for (Tag tag : this.tags) {
@@ -58,6 +81,8 @@ public class Kweet {
 
         poster.addKweet(this);
     }
+
+    public Kweet(){}
 
     public void addLover(User user){
         if(!lovers.contains(user)){

@@ -17,6 +17,8 @@ public class User {
     ArrayList<User> follows;
     ArrayList<Kweet> kweets;
 
+    public User(){}
+
     public User(long id, String profilePicture, String name, String bio, String locations, String website) {
         this.id = id;
         this.profilePicture = profilePicture;

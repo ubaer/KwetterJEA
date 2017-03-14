@@ -3,6 +3,8 @@ package main.dao;
 import main.domain.Kweet;
 import main.domain.User;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Kevin
  */
+@Stateless @Default
 public class KweetCollection implements KweetDao {
 
     ArrayList<Kweet> kweets = new ArrayList<>();

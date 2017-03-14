@@ -22,6 +22,13 @@ public interface TagDao {
     void removeTag(Tag tag);
 
     /**
+     * Gets a tag by its name
+     * @param name
+     * @return the requested tag
+     */
+    Tag getTagByName(String name);
+
+    /**
      * Gets all the tags known to the dao layer
      * @return ArrayList of all the tags
      */
