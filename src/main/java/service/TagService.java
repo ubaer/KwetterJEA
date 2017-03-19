@@ -22,7 +22,7 @@ public class TagService {
     }
 
     @Inject
-    @Default
+    @JPA
     private TagDao tagDao;
 
     public void addTag(Tag tag){

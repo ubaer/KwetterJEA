@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,23 +35,23 @@ public class KweetJPA implements KweetDao {
 
     @Override
     public Kweet findById(long id) {
-        return null;
+        return (Kweet) em.createQuery("SELECT k FROM Kweet k where k.id = :value1")
+                .setParameter("value1", id).getSingleResult();
     }
 
     @Override
     public ArrayList<Kweet> getAllKweets() {
-        Query query = em.createQuery("SELECT kweet FROM Kweet kweet", Kweet.class);
-        return (ArrayList<Kweet>) query.getResultList();
+        ArrayList<Kweet> kweets = new ArrayList<>();
+        kweets.addAll(em.createQuery("SELECT k FROM Kweet k").getResultList());
+        return kweets;
     }
 
     @Override
     public ArrayList<Kweet> getAllKweetsByUser(User user) {
-        final List<Kweet> results = em
-                .createNativeQuery(
-                        "SELECT k.Kweet FROM Kweet k where k.Poster = ?1")
-                .setParameter(1, user).getResultList();
-        ArrayList kweets = new ArrayList();
-        kweets.addAll(results);
+        ArrayList<Kweet> kweets = new ArrayList<>();
+        List<Kweet> result = (List<Kweet>) em.createQuery("SELECT k FROM Kweet k where k.poster = :value1")
+                .setParameter("value1", user).getResultList();
+        kweets.addAll(result);
         return kweets;
     }
 }

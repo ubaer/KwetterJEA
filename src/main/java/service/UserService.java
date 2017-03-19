@@ -20,7 +20,7 @@ public class UserService {
     }
 
     @Inject
-    @Default
+    @JPA
     private UserDao userDao;
 
     public void addUser(User user){

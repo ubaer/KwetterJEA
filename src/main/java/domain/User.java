@@ -8,8 +8,7 @@ import java.util.*;
 /**
  * Created by Kevin
  */
-@Entity @Model
-@Table(name = "User")
+@Entity
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -48,6 +47,14 @@ public class User {
     List<Kweet> kweets;
 
     public User() {
+    }
+
+    public User(String username){
+        this.name = username;
+
+        followers = new ArrayList<>();
+        follows = new ArrayList<>();
+        kweets = new ArrayList<>();
     }
 
     public User(long id, String profilePicture, String name, String bio, String locations, String website) {

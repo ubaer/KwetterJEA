@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class KweetService {
 
     @Inject
-    @Default
+    @JPA
     private KweetDao kweetDao;
 
     public KweetService() {

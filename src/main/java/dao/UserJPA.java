@@ -21,7 +21,11 @@ public class UserJPA implements UserDao{
 
     @Override
     public void addUser(User user) {
-        em.persist(user);
+        List<User> results = em.createQuery("SELECT t FROM User t where t.name = :value1")
+                .setParameter("value1", user.getName()).getResultList();
+        if(results.size() == 0){
+            em.persist(user);
+        }
     }
 
     @Override
@@ -43,7 +47,8 @@ public class UserJPA implements UserDao{
 
     @Override
     public User findByName(String name) {
-        return em.find(User.class, name);
+        return (User) em.createQuery("SELECT t FROM User t where t.name = :value1")
+                .setParameter("value1", name).getSingleResult();
     }
 
     @Override

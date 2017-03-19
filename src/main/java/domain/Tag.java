@@ -9,7 +9,6 @@ import java.util.List;
  * Created by Kevin
  */
 @Entity
-@Table(name = "Tag")
 public class Tag {
 
     public void setName(String name) {

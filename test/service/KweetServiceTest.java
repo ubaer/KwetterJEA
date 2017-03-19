@@ -7,6 +7,7 @@ import main.java.service.KweetService;
 import org.junit.runner.RunWith;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -43,4 +43,11 @@ public class UserRest {
         User currentUser = userService.findByName(username);
         userService.changeUsername(currentUser, newUsername);
     }
+    @POST
+    @Path("post/createuser/{username}")
+    public void createUser(@PathParam("username")String username){
+        User newUser = new User(username);
+        userService.addUser(newUser);
+    }
+
 }

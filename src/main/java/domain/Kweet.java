@@ -10,16 +10,13 @@ import java.util.List;
  * Created by Kevin
  */
 @Entity
-@Table(name = "Kweet")
 public class Kweet {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column
     String message;
 
-    @Column
     Date date;
 
     public void setId(long id) {

@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import main.java.domain.Tag;
 import main.java.service.TagService;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
