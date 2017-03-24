@@ -21,7 +21,7 @@ public class Tag {
 
     @Id
     String name;
-    @ManyToMany
+    @OneToMany
     List<Kweet> kweets;
 
     public String getName() {

@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +36,10 @@ public class KweetRest {
     }
 
     @GET
-    public ArrayList<Kweet> getAllKweets(){
-        return kweetService.getAllKweets();
+    public List<Kweet> getAllKweets(){
+        ArrayList<Kweet> allKweets = kweetService.getAllKweets();
+        System.out.println("Alle kweets aantal:" + allKweets.size());
+        return allKweets;
     }
 
     @GET
@@ -67,17 +70,25 @@ public class KweetRest {
     }
 
     @POST
-    @Path("post/{username}/{message}")
+    @Path("{username}/{message}")
     public void addKweet(@PathParam("username") String username, @PathParam("message") String message){
         User user = userService.findByName(username);
         Kweet newKweet = new Kweet(user, message, null, null);
         kweetService.addKweet(newKweet);
     }
 
-    @POST
-    @Path("delete/{id}")
+    @DELETE
+    @Path("{id}")
     public void deleteKweet( @PathParam("id") long id){
         Kweet deleteKweet = kweetService.findKweetById(id);
         kweetService.removeKweet(deleteKweet);
+    }
+
+    @POST
+    @Path("{id}/mention/{username}")
+    public void addMention(@PathParam("id") long id, @ PathParam("username") String username){
+        Kweet foundKweet  = kweetService.findKweetById(id);
+        User foundUser = userService.findByName(username);
+        kweetService.addMention(foundKweet, foundUser);
     }
 }

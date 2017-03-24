@@ -41,4 +41,11 @@ public interface KweetDao {
      * @return ArrayList of all the Kweets from a user
      */
     ArrayList<Kweet> getAllKweetsByUser(User user);
+
+    /**
+     * Adds a mention to a kweet
+     * @param kweet
+     * @param mention
+     */
+    void addMention(Kweet kweet, User mention);
 }

@@ -25,7 +25,7 @@ public class KweetRestTest extends TestCase {
 
         HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/post/createuser/PeterPan");
         HttpClientBuilder.create().build().execute(request);
-        request = new HttpPost("http://localhost:8080/Kwetter/api/kweet/post/PeterPan/KweetForUnitTest");
+        request = new HttpPost("http://localhost:8080/Kwetter/api/kweet/PeterPan/KweetForUnitTest");
         HttpClientBuilder.create().build().execute(request);
     }
 

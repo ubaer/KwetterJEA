@@ -84,5 +84,10 @@ public class UserCollection implements UserDao {
     public List<Kweet> getUserRecentKweets(User user, int amountOfPosts){
         return user.getRecentKweets(amountOfPosts);
     }
+
+    @Override
+    public void addFollows(User currentUser, User toFollow) {
+        //todo
+    }
 }
 

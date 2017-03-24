@@ -53,8 +53,16 @@ public class KweetCollection implements KweetDao {
     @Override
     public ArrayList<Kweet> getAllKweetsByUser(User user) {
         ArrayList returnKweets = new ArrayList();
-        returnKweets.addAll(kweets.stream().filter(kweet -> kweet.getPoster() == user).collect(Collectors.toList()));
+       returnKweets.addAll(kweets.stream().filter(kweet -> kweet.getPosterId() == user.getId()).collect(Collectors.toList()));
 
         return returnKweets;
+    }
+
+    @Override
+    public void addMention(Kweet kweet, User mention) {
+        Optional<Kweet> foundKweet = kweets.stream().filter(k -> k.getId() == kweet.getId()).findFirst();
+        if(foundKweet.isPresent()){
+       //     foundKweet.get().addMention(mention);
+        }
     }
 }

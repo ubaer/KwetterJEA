@@ -1,10 +1,12 @@
 package main.java.domain;
 
+import javax.lang.model.element.NestingKind;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kevin
@@ -19,6 +21,12 @@ public class Kweet {
 
     Date date;
 
+    public long getPosterId() {
+        return posterId;
+    }
+
+    long posterId;
+
     public void setId(long id) {
         this.id = id;
     }
@@ -31,24 +39,19 @@ public class Kweet {
         this.date = date;
     }
 
-    public void setPoster(User poster) {
-        this.poster = poster;
+    public void setPosterId(long posterId) {
+        this.posterId = posterId;
     }
 
     public void setMentions(List<User> mentions) {
         this.mentions = mentions;
     }
 
-    public void setLovers(List<User> lovers) {
+   /* public void setLovers(List<User> lovers) {
         this.lovers = lovers;
     }
+*/
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
-
-    @ManyToOne
-    User poster;
 
     public String getMessage() {
         return message;
@@ -62,37 +65,37 @@ public class Kweet {
         return date;
     }
 
-    public User getPoster() {
-        return poster;
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
-    @ManyToMany
-    List<User> mentions;
-    @ManyToMany
-    List<User> lovers;
-    @ManyToMany
-    List<Tag> tags;
+    @OneToMany
+     List<User> mentions;
+   // @ElementCollection
+   // List<String> lovers;
+    @ElementCollection
+    List<String> tags;
 
     public Kweet(User poster, String message, ArrayList<Tag> tags, ArrayList<User> mentions) {
         this.message = message;
-        this.poster = poster;
+        this.posterId = poster.getId();
         this.date = new Date();
-        this.tags = tags;
-        this.mentions = mentions;
-        this.lovers = new ArrayList<>();
+       // this.mentions = mentions;
+       // this.lovers = new ArrayList<>();
 
-        if (tags == null) {
+      /*  if (tags == null) {
             this.tags = new ArrayList<>();
         }
 
         if (mentions == null) {
             this.mentions = new ArrayList<>();
         }
-
+/*
         for (Tag tag : this.tags) {
             tag.addKweet(this);
         }
-
+*/
         poster.addKweet(this);
     }
 
@@ -100,8 +103,8 @@ public class Kweet {
         this.id = id;
         this.message = message;
         this.date = date;
-        this.poster = poster;
-        this.tags = tags;
+        this.posterId = poster.getId();
+      /*  this.tags = tags;
         this.mentions = mentions;
         this.lovers = new ArrayList<>();
 
@@ -116,16 +119,16 @@ public class Kweet {
         for (Tag tag : this.tags) {
             tag.addKweet(this);
         }
-
+*/
         poster.addKweet(this);
     }
 
     public Kweet() {
     }
-
+/*
     public void addLover(User user) {
-        if (!lovers.contains(user)) {
-            lovers.add(user);
+        if (!lovers.contains(user.getName())) {
+            lovers.add(user.getName());
         }
     }
 
@@ -135,10 +138,10 @@ public class Kweet {
         }
     }
 
-    public List<User> getLovers() {
+    public List<String> getLovers() {
         return lovers;
     }
-
+*/
     public void addMentions(ArrayList<User> users) {
         if (mentions == null) {
             mentions = new ArrayList<>();
@@ -146,24 +149,29 @@ public class Kweet {
         mentions.addAll(users);
     }
 
+    public void addMention(User user){
+        if(!mentions.contains(user)){
+            mentions.add(user);
+        }
+    }
+
     public List<User> getMentions() {
         return mentions;
     }
 
     public void addTags(ArrayList<Tag> tags) {
-        this.tags.addAll(tags);
-
         for (Tag tag : tags) {
+            this.tags.add(tag.getName());
             tag.addKweet(this);
         }
     }
 
     public void addTag(Tag tag) {
-        this.tags.add(tag);
+        this.tags.add(tag.getName());
         tag.addKweet(this);
     }
 
-    public List<Tag> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 }

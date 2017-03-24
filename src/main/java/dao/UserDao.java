@@ -61,4 +61,11 @@ public interface UserDao {
      * @return List of all the Kweets
      */
     List<Kweet> getUserRecentKweets(User user, int amountOfPosts);
+
+    /**
+     * Adds a follow to the currentuser
+     * @param currentUser
+     * @param toFollow
+     */
+    void addFollows(User currentUser, User toFollow);
 }

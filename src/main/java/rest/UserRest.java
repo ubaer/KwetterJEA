@@ -49,5 +49,12 @@ public class UserRest {
         User newUser = new User(username);
         userService.addUser(newUser);
     }
+    @POST
+    @Path("{username}/follow/{follow}")
+    public void followUser(@PathParam("username")String username,@PathParam("follow") String followUsername){
+        User currentUser = userService.findByName(username);
+        User toFollow = userService.findByName(followUsername);
+        userService.addFollows(currentUser, toFollow);
+    }
 
 }

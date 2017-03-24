@@ -67,4 +67,10 @@ public class UserJPA implements UserDao{
     public List<Kweet> getUserRecentKweets(User user, int amountOfPosts) {
         return null;
     }
+
+    @Override
+    public void addFollows(User currentUser, User toFollow) {
+        currentUser.addFollows(toFollow);
+        em.merge(currentUser);
+    }
 }

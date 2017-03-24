@@ -23,7 +23,7 @@ public class TagTest extends TestCase {
     public void testAddKweet() throws Exception{
         Tag tag = new Tag("Nieuwe Tag");
         Kweet newKweet = new Kweet(5, "newKweet", new Date(), newUser, null, null);
-        newKweet.addTag(tag);
+      //todo  newKweet.addTag(tag);
 
         assertEquals(tag.getKweets().get(0), newKweet);
     }
@@ -31,7 +31,7 @@ public class TagTest extends TestCase {
     public void testRemoveKweet() throws Exception{
         Tag tag = new Tag("Nieuwe Tag");
         Kweet newKweet = new Kweet(5, "newKweet", new Date(), newUser, null, null);
-        newKweet.addTag(tag);
+      //todo  newKweet.addTag(tag);
 
         assertEquals(tag.getKweets().get(0), newKweet);
 

@@ -49,9 +49,17 @@ public class KweetJPA implements KweetDao {
     @Override
     public ArrayList<Kweet> getAllKweetsByUser(User user) {
         ArrayList<Kweet> kweets = new ArrayList<>();
-        List<Kweet> result = (List<Kweet>) em.createQuery("SELECT k FROM Kweet k where k.poster = :value1")
-                .setParameter("value1", user).getResultList();
+        List<Kweet> result = (List<Kweet>) em.createQuery("SELECT k FROM Kweet k where k.posterId = :value1")
+                .setParameter("value1", user.getId()).getResultList();
         kweets.addAll(result);
         return kweets;
     }
+
+    @Override
+    public void addMention(Kweet kweet, User mention) {
+        Kweet foundKweet = findById(kweet.getId());
+        foundKweet.addMention(mention);
+        em.merge(foundKweet);
+    }
+
 }

@@ -1,7 +1,11 @@
 package main.java.domain;
 
+import com.sun.istack.internal.Nullable;
+
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Model;
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
@@ -39,9 +43,19 @@ public class User {
     String locations;
     String website;
 
-    @OneToMany
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    Date createDate;
+
+    @OneToMany @JoinTable(name = "user_followers")
     List<User> followers;
-    @OneToMany
+    @OneToMany @JoinTable( name = "user_follows")
     List<User> follows;
     @OneToMany
     List<Kweet> kweets;
@@ -55,6 +69,7 @@ public class User {
         followers = new ArrayList<>();
         follows = new ArrayList<>();
         kweets = new ArrayList<>();
+        createDate = new Date();
     }
 
     public User(long id, String profilePicture, String name, String bio, String locations, String website) {
