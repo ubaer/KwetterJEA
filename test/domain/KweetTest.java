@@ -24,9 +24,9 @@ public class KweetTest extends TestCase  {
     public void tearDown() throws Exception {
 
     }
-/* todo
+
     public void testAddLover() throws Exception {
-        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
+        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
         User lover = new User(1, "picute.jpg","Mr Lover", "Loves everything","Adam","www.ashleymadison.com");
 
         List<User> lovers = testKweet.getLovers();
@@ -38,7 +38,7 @@ public class KweetTest extends TestCase  {
     }
 
     public void testRemoveLover() throws Exception {
-        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
+        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
         User lover = new User(1, "picute.jpg","Mr Lover", "Loves everything","Adam","www.ashleymadison.com");
         testKweet.addLover(lover);
 
@@ -60,7 +60,7 @@ public class KweetTest extends TestCase  {
     }
 
     public void testAddTags() throws Exception {
-        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
+        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
 
         ArrayList tags = new ArrayList();
         tags.addAll(Arrays.asList(new Tag("firstTag"),new Tag("secondTag")));
@@ -70,12 +70,12 @@ public class KweetTest extends TestCase  {
     }
 
     public void testAddTag() throws Exception {
-        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
+        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
 
         Tag nieuwTag = new Tag("Single tag");
         testKweet.addTag(nieuwTag);
 
         assertEquals(1, testKweet.getTags().size());
         assertEquals(nieuwTag, testKweet.getTags().get(0));
-    }*/
+    }
 }

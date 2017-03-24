@@ -21,6 +21,8 @@ public class Kweet {
 
     Date date;
 
+
+
     public long getPosterId() {
         return posterId;
     }
@@ -47,10 +49,10 @@ public class Kweet {
         this.mentions = mentions;
     }
 
-   /* public void setLovers(List<User> lovers) {
+    public void setLovers(List<User> lovers) {
         this.lovers = lovers;
     }
-*/
+
 
 
     public String getMessage() {
@@ -70,10 +72,10 @@ public class Kweet {
         this.tags = tags;
     }
 
-    @OneToMany
+    @OneToMany @JoinTable(name = "kweet_mention")
      List<User> mentions;
-   // @ElementCollection
-   // List<String> lovers;
+    @OneToMany  @JoinTable(name = "kweet_lover")
+    List<User> lovers;
     @ElementCollection
     List<String> tags;
 
@@ -81,30 +83,6 @@ public class Kweet {
         this.message = message;
         this.posterId = poster.getId();
         this.date = new Date();
-       // this.mentions = mentions;
-       // this.lovers = new ArrayList<>();
-
-      /*  if (tags == null) {
-            this.tags = new ArrayList<>();
-        }
-
-        if (mentions == null) {
-            this.mentions = new ArrayList<>();
-        }
-/*
-        for (Tag tag : this.tags) {
-            tag.addKweet(this);
-        }
-*/
-        poster.addKweet(this);
-    }
-
-    public Kweet(long id, String message, Date date, User poster, ArrayList<Tag> tags, ArrayList<User> mentions) {
-        this.id = id;
-        this.message = message;
-        this.date = date;
-        this.posterId = poster.getId();
-      /*  this.tags = tags;
         this.mentions = mentions;
         this.lovers = new ArrayList<>();
 
@@ -116,19 +94,57 @@ public class Kweet {
             this.mentions = new ArrayList<>();
         }
 
-        for (Tag tag : this.tags) {
+        for (Tag tag : tags) {
+            this.tags.add(tag.getName());
             tag.addKweet(this);
         }
-*/
+
         poster.addKweet(this);
     }
 
+    public Kweet(long id, String message, Date date, User poster, ArrayList<Tag> tags, ArrayList<User> mentions) {
+        this.id = id;
+        this.message = message;
+        this.date = date;
+        this.posterId = poster.getId();
+        this.tags = new ArrayList<>();
+        this.mentions = mentions;
+        this.lovers = new ArrayList<>();
+
+        if (mentions == null) {
+            this.mentions = new ArrayList<>();
+        }
+
+        for (Tag tag : tags) {
+            this.tags.add(tag.getName());
+            tag.addKweet(this);
+        }
+
+        poster.addKweet(this);
+    }
+    public Kweet(User poster, String message) {
+        this.message = message;
+        this.posterId = poster.getId();
+        this.date = new Date();
+        this.mentions = mentions;
+        this.lovers = new ArrayList<>();
+
+        if (tags == null) {
+            this.tags = new ArrayList<>();
+        }
+
+        if (mentions == null) {
+            this.mentions = new ArrayList<>();
+        }
+
+        poster.addKweet(this);
+    }
     public Kweet() {
     }
-/*
+
     public void addLover(User user) {
-        if (!lovers.contains(user.getName())) {
-            lovers.add(user.getName());
+        if (!lovers.contains(user)) {
+            lovers.add(user);
         }
     }
 
@@ -138,10 +154,10 @@ public class Kweet {
         }
     }
 
-    public List<String> getLovers() {
+    public List<User> getLovers() {
         return lovers;
     }
-*/
+
     public void addMentions(ArrayList<User> users) {
         if (mentions == null) {
             mentions = new ArrayList<>();
