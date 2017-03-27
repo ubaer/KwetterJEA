@@ -38,13 +38,13 @@ public class UserRest {
     }
 
     @POST
-    @Path("post/{username}/{newUsername}")
+    @Path("{username}/rename/{newUsername}")
     public void changeUsername(@PathParam("username")String username, @PathParam("newUsername") String newUsername){
         User currentUser = userService.findByName(username);
         userService.changeUsername(currentUser, newUsername);
     }
     @POST
-    @Path("post/createuser/{username}")
+    @Path("{username}")
     public void createUser(@PathParam("username")String username){
         User newUser = new User(username);
         userService.addUser(newUser);
@@ -56,5 +56,9 @@ public class UserRest {
         User toFollow = userService.findByName(followUsername);
         userService.addFollows(currentUser, toFollow);
     }
-
+    @DELETE
+    @Path("{username}")
+    public void deleteUser(@PathParam("username")String username){
+        userService.removeUser(userService.findByName(username));
+    }
 }

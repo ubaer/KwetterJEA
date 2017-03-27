@@ -23,7 +23,7 @@ public class KweetRestTest extends TestCase {
 
         mapper = new ObjectMapper();
 
-        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/post/createuser/PeterPan");
+        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/PeterPan");
         HttpClientBuilder.create().build().execute(request);
         request = new HttpPost("http://localhost:8080/Kwetter/api/kweet/PeterPan/KweetForUnitTest");
         HttpClientBuilder.create().build().execute(request);

@@ -1,9 +1,11 @@
 package rest;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.TestCase;
 import main.java.domain.User;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -22,7 +24,7 @@ public class UserRestTest extends TestCase {
 
         mapper = new ObjectMapper();
 
-        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/post/createuser/PeterPan");
+        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/PeterPan");
         HttpClientBuilder.create().build().execute(request);
     }
 
@@ -55,5 +57,32 @@ public class UserRestTest extends TestCase {
 
     public void testChangeUsername() throws Exception {
 
+    }
+
+    public void testDeleteUser()throws Exception{
+        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/user/TestDeleteUser");
+        HttpClientBuilder.create().build().execute(request);
+
+        request = new HttpGet("http://localhost:8080/Kwetter/api/user/TestDeleteUser");
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+        User user = mapper.readValue(response.getEntity().getContent(),  User.class);
+
+        assertNotNull(user);
+
+        request = new HttpDelete("http://localhost:8080/Kwetter/api/user/TestDeleteUser");
+        HttpClientBuilder.create().build().execute(request);
+
+        request = new HttpGet("http://localhost:8080/Kwetter/api/user/TestDeleteUser");
+        response = HttpClientBuilder.create().build().execute(request);
+
+        Throwable exception = null;
+        try{
+            mapper.readValue(response.getEntity().getContent(), User.class);
+        }
+        catch (JsonParseException e){
+            exception = e;
+        }
+
+        assertTrue(exception instanceof JsonParseException);
     }
 }

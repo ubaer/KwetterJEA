@@ -60,12 +60,12 @@ public class UserJPA implements UserDao{
 
     @Override
     public List<Kweet> getUserTimeline(User user, int amountOfPosts) {
-        return null;
+        return findByName(user.getName()).getTimeLine(amountOfPosts);
     }
 
     @Override
     public List<Kweet> getUserRecentKweets(User user, int amountOfPosts) {
-        return null;
+        return findByName(user.getName()).getRecentKweets(amountOfPosts);
     }
 
     @Override
