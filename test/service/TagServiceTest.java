@@ -3,9 +3,11 @@ package service;
 import junit.framework.TestCase;
 import main.java.domain.Tag;
 import main.java.service.TagService;
+import org.mockito.Mockito;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,57 +16,35 @@ import java.util.Arrays;
  */
 public class TagServiceTest extends TestCase {
 
-    @Inject
-    TagService tagService;
-
-    Tag tag1;
-    Tag tag2;
-    Tag tag3;
-    Tag tag4;
-    Tag tag5;
+    TagService tagService = Mockito.mock(TagService.class);
 
     public void setUp() throws Exception {
-        super.setUp();
 
-        tag1 = new Tag("Tag1");
-        tag2 = new Tag("Tag2");
-        tag3 = new Tag("Tag3");
-        tag4 = new Tag("Tag4");
-        tag5 = new Tag("Tag5");
     }
 
-    public void testAddTag() throws Exception {
-        assertEquals(0, tagService.getAllTags().size());
 
-        tagService.addTag(tag1);
+    public void testGetTagByName() throws Exception{
+        Tag testTag = new Tag("testTag");
+        Mockito.when(tagService.getTagByName("testTag")).thenReturn(testTag);
 
-        assertEquals(1, tagService.getAllTags().size());
-    }
-
-    public void testRemoveTag() throws Exception {
-        tagService.addTag(tag1);
-        tagService.addTag(tag2);
-        tagService.addTag(tag3);
-        assertEquals(3, tagService.getAllTags().size());
-        assertTrue(tagService.getAllTags().contains(tag1));
-
-        tagService.removeTag(tag1);
-
-        assertEquals(2, tagService.getAllTags().size());
-        assertFalse(tagService.getAllTags().contains(tag1));
+        Tag foundTag = tagService.getTagByName("testTag");
+        assertEquals(testTag, foundTag);
+        assertEquals("testTag", foundTag.getName());
     }
 
     public void testGetAllTags() throws Exception {
-        tagService.addTag(tag1);
-        tagService.addTag(tag2);
-        tagService.addTag(tag3);
-        tagService.addTag(tag4);
-        tagService.addTag(tag5);
-        ArrayList<Tag> allTags = new ArrayList<>();
-        allTags.addAll(Arrays.asList(tag1, tag2, tag3, tag4, tag5));
+        Tag testTag1 = new Tag("testTag1");
+        Tag testTag2 = new Tag("testTag2");
+        Tag testTag3 = new Tag("testTag3");
+        Tag testTag4 = new Tag("testTag4");
+        ArrayList<Tag> tags = new ArrayList<>();
+        tags.addAll(Arrays.asList(testTag1,testTag2,testTag3,testTag4));
 
-        ArrayList foundTags = tagService.getAllTags();
+        Mockito.when(tagService.getAllTags()).thenReturn(tags);
 
-        assertEquals(allTags, foundTags);
+        ArrayList<Tag> foundTags =  tagService.getAllTags();
+
+        assertEquals(tags, foundTags);
+
     }
 }

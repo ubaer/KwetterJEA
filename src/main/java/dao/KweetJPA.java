@@ -42,7 +42,10 @@ public class KweetJPA implements KweetDao {
     @Override
     public ArrayList<Kweet> getAllKweets() {
         ArrayList<Kweet> kweets = new ArrayList<>();
-        kweets.addAll(em.createQuery("SELECT k FROM Kweet k").getResultList());
+        ArrayList<Kweet> receivedKweets = (ArrayList<Kweet>) em.createQuery("SELECT k FROM Kweet k").getResultList();
+        if(receivedKweets != null) {
+            kweets.addAll(receivedKweets);
+        }
         return kweets;
     }
 
