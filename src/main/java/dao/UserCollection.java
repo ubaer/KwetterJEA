@@ -2,6 +2,7 @@ package main.java.dao;
 
 import main.java.domain.Kweet;
 import main.java.domain.User;
+import main.java.domain.UserGroup;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -37,11 +38,11 @@ public class UserCollection implements UserDao {
     public boolean changeUsername(User user, String newName) {
         if(users.contains(user)){
             // First check if username is not taken yet.
-            Optional<User> foundUser = users.stream().filter(x -> x.getName() == newName).findFirst();
+            Optional<User> foundUser = users.stream().filter(x -> x.getUserName() == newName).findFirst();
             if(!foundUser.isPresent()){
                 // Username is not taken, change the users username.
                 users.stream()
-                        .filter(x -> x.getId() == user.getId()).findFirst().get().setName(newName);
+                        .filter(x -> x.getId() == user.getId()).findFirst().get().setUserName(newName);
                 return true;
             }
         }
@@ -61,7 +62,7 @@ public class UserCollection implements UserDao {
 
     @Override
     public User findByName(String name) {
-        Optional<User> foundUser = users.stream().filter(user -> user.getName().equals(name)).findFirst();
+        Optional<User> foundUser = users.stream().filter(user -> user.getUserName().equals(name)).findFirst();
         User returnUser = null;
         if(foundUser.isPresent()){
             returnUser = foundUser.get();
@@ -88,6 +89,16 @@ public class UserCollection implements UserDao {
     @Override
     public void addFollows(User currentUser, User toFollow) {
         //todo
+    }
+
+    @Override
+    public void createUserGroup(UserGroup role) {
+
+    }
+
+    @Override
+    public void addUserToGroup(User user, UserGroup role) {
+
     }
 }
 

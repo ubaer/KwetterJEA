@@ -58,7 +58,7 @@ public class UserCollectionTest extends TestCase {
         userDao.addUser(user1);
         userDao.changeUsername(user1, "Peter R de vries");
 
-        assertEquals("Peter R de vries", user1.getName());
+        assertEquals("Peter R de vries", user1.getUserName());
     }
 
     public void testChangeTakenUsername() throws Exception{
@@ -68,7 +68,7 @@ public class UserCollectionTest extends TestCase {
         boolean namechangeSuccesfull = userDao.changeUsername(user1, "Pusedo meno");
 
         assertFalse(namechangeSuccesfull);
-        assertNotSame("Pusedo meno", user1.getName());
+        assertNotSame("Pusedo meno", user1.getUserName());
     }
 
     public void testFindById() throws Exception {
@@ -86,7 +86,7 @@ public class UserCollectionTest extends TestCase {
         userDao.addUser(user2);
         userDao.addUser(user3);
 
-        User foundUser = userDao.findByName(user1.getName());
+        User foundUser = userDao.findByName(user1.getUserName());
 
         assertEquals(foundUser, user1);
     }

@@ -1,12 +1,6 @@
 package main.java.domain;
 
-import com.sun.istack.internal.Nullable;
-
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.Model;
 import javax.persistence.*;
-import javax.validation.constraints.Null;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 /**
@@ -37,8 +31,30 @@ public class User {
         this.kweets = kweets;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
+
+    public List<UserGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<UserGroup> groups) {
+        this.groups = groups;
+    }
+
+    @ManyToMany(mappedBy = "users")
+    private List<UserGroup> groups;
+
     String profilePicture;
-    String name;
+    String userName;
+
     String bio;
     String locations;
     String website;
@@ -64,18 +80,30 @@ public class User {
     }
 
     public User(String username){
-        this.name = username;
+        this.userName = username;
 
         followers = new ArrayList<>();
         follows = new ArrayList<>();
         kweets = new ArrayList<>();
+        groups = new ArrayList<>();
+        createDate = new Date();
+    }
+
+    public User(String username, String password){
+        this.userName = username;
+        this.password = password;
+
+        followers = new ArrayList<>();
+        follows = new ArrayList<>();
+        kweets = new ArrayList<>();
+        groups = new ArrayList<>();
         createDate = new Date();
     }
 
     public User(long id, String profilePicture, String name, String bio, String locations, String website) {
         this.id = id;
         this.profilePicture = profilePicture;
-        this.name = name;
+        this.userName = name;
         this.bio = bio;
         this.locations = locations;
         this.website = website;
@@ -83,6 +111,7 @@ public class User {
         followers = new ArrayList<>();
         follows = new ArrayList<>();
         kweets = new ArrayList<>();
+        groups = new ArrayList<>();
     }
 
     public String getProfilePicture() {
@@ -93,12 +122,12 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getBio() {

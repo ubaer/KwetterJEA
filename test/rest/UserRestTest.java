@@ -52,7 +52,7 @@ public class UserRestTest extends TestCase {
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         User user = mapper.readValue(response.getEntity().getContent(),  User.class);
-        assertEquals("PeterPan", user.getName());
+        assertEquals("PeterPan", user.getUserName());
     }
 
     public void testChangeUsername() throws Exception {

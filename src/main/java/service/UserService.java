@@ -3,6 +3,7 @@ package main.java.service;
 import main.java.dao.JPA;
 import main.java.dao.UserDao;
 import main.java.domain.User;
+import main.java.domain.UserGroup;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -77,5 +78,12 @@ public class UserService {
 
     public void addFollows(User currentUser, User toFollow) {
         userDao.addFollows(currentUser, toFollow);
+    }
+
+    public void addUserToGroup(User user, UserGroup role) { userDao.addUserToGroup(user, role);
+    }
+
+    public void createUserGroup(UserGroup role) {
+        userDao.createUserGroup(role);
     }
 }

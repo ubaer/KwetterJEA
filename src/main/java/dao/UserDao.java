@@ -2,6 +2,7 @@ package main.java.dao;
 
 import main.java.domain.Kweet;
 import main.java.domain.User;
+import main.java.domain.UserGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,4 +69,17 @@ public interface UserDao {
      * @param toFollow
      */
     void addFollows(User currentUser, User toFollow);
+
+    /**
+     * Creates a usergroup role
+     * @param role
+     */
+    void createUserGroup(UserGroup role);
+
+    /**
+     * Adds user to a group
+     * @param user
+     * @param role
+     */
+    void addUserToGroup(User user, UserGroup role);
 }
