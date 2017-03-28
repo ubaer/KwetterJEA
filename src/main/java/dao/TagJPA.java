@@ -20,6 +20,11 @@ public class TagJPA implements TagDao {
 
     @Override
     public void addTag(Tag tag) {
+        List<Tag> results = em.createQuery("SELECT t FROM Tag t where t.name = :value1")
+                .setParameter("value1", tag.getName()).getResultList();
+        if(results.size() == 0){
+            em.persist(tag);
+        }
         em.persist(tag);
     }
 

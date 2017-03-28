@@ -4,15 +4,19 @@ import main.java.dao.JPA;
 import main.java.dao.KweetDao;
 import main.java.domain.Kweet;
 import main.java.domain.User;
+import main.java.interceptor.KweetHashtag;
+import main.java.interceptor.KweetHashtagInterceptor;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import java.util.ArrayList;
 
 /**
  * Created by Kevin.
  */
+@Interceptors(KweetHashtagInterceptor.class)
 @Stateless
 public class KweetService {
     @Inject
@@ -26,6 +30,7 @@ public class KweetService {
      * Adds a Kweet
      * @param kweet that has to be added
      */
+    @KweetHashtag
     public void addKweet(Kweet kweet){
         kweetDao.addKweet(kweet);
     }
