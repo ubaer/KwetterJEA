@@ -4,10 +4,14 @@ import main.java.domain.User;
 import main.java.domain.UserGroup;
 
 import javax.annotation.PostConstruct;
+import javax.batch.operations.JobSecurityException;
+import javax.batch.operations.JobStartException;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import java.util.ArrayList;
+
+import javax.batch.operations.JobOperator;
+import javax.batch.runtime.BatchRuntime;
 
 /**
  * Created by Kevin on 28-3-2017.
@@ -19,20 +23,26 @@ public class StartupService {
     @Inject
     private UserService userService;
 
+    private long execID;
+    private JobOperator jobOperator;
+
     public StartupService() {
     }
 
     @PostConstruct
     private void intData() {
+        UserGroup regular = new UserGroup("regulars");
+        userService.createUserGroup(regular);
+        userService.addUser(new User("Peter", "ea72c79594296e45b8c2a296644d988581f58cfac6601d122ed0a8bd7c02e8bf"));
+        User peter = userService.findByName("Peter");
+        userService.addUserToGroup(peter, regular);
+
+        jobOperator = BatchRuntime.getJobOperator();
         try {
-            UserGroup regular = new UserGroup("regulars");
-            userService.createUserGroup(regular);
-            userService.addUser(new User("Peter", "ea72c79594296e45b8c2a296644d988581f58cfac6601d122ed0a8bd7c02e8bf"));
-            User peter = userService.findByName("Peter");
-            userService.addUserToGroup(peter, regular);
-        }
-        catch (Exception e){
-            System.out.println(e);
+            execID = jobOperator.start("userimport", null);
+            System.out.println("import done");
+        } catch (JobStartException | JobSecurityException e) {
+            e.printStackTrace();
         }
     }
 }

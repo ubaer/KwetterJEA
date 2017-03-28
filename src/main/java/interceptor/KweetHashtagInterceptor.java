@@ -22,28 +22,32 @@ public class KweetHashtagInterceptor {
     public Object aroundInvoke(InvocationContext ic) throws Exception {
         Object[] methodParameters = ic.getParameters();
 
-        Kweet originalKweet = (Kweet) methodParameters[0];
-        String kweetMessage = originalKweet.getMessage();
+       if(ic.getMethod().getName()== "addKweet") {
 
-        if(kweetMessage.contains("2015")){
-            kweetMessage = kweetMessage.replace("2015", "#2015");
-            originalKweet.addTag(new Tag("#2015"));
+           if (methodParameters.length != 0) {
+               Kweet originalKweet = (Kweet) methodParameters[0];
+               String kweetMessage = originalKweet.getMessage();
 
-        }
-        if(kweetMessage.contains("2016")){
-            kweetMessage = kweetMessage.replace("2016", "#2016");
-            originalKweet.addTag(new Tag("#2016"));
-        }
-        if(kweetMessage.contains("2017")){
-            kweetMessage = kweetMessage.replace("2017", "#2017");
-            originalKweet.addTag(new Tag("#2017"));
-        }
+               if (kweetMessage.contains("2015")) {
+                   kweetMessage = kweetMessage.replace("2015", "#2015");
+                   originalKweet.addTag(new Tag("#2015"));
+               }
+               if (kweetMessage.contains("2016")) {
+                   kweetMessage = kweetMessage.replace("2016", "#2016");
+                   originalKweet.addTag(new Tag("#2016"));
+               }
+               if (kweetMessage.contains("2017")) {
+                   kweetMessage = kweetMessage.replace("2017", "#2017");
+                   originalKweet.addTag(new Tag("#2017"));
+               }
 
-        originalKweet.setMessage(kweetMessage);
+               originalKweet.setMessage(kweetMessage);
 
-        methodParameters[0] = originalKweet;
+               methodParameters[0] = originalKweet;
 
-        ic.setParameters(methodParameters);
+               ic.setParameters(methodParameters);
+           }
+       }
         return ic.proceed();
     }
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "username": "BatchUser1",
+    "bio": "Bio of user one",
+    "locations": "Sittard",
+    "website": "www.BatchUser1.nl"
+  },
+  {
+    "username": "BatchUser2",
+    "bio": "Bio of user two",
+    "locations": "Geleen",
+    "website": "www.BatchUser2.nl"
+  },
+  {
+    "username": "BatchUser3",
+    "bio": "Bio of user three",
+    "locations": "Beek",
+    "website": "www.BatchUser3.nl"
+  },
+  {
+    "username": "BatchUser4",
+    "bio": "Bio of user four",
+    "locations": "Amerika",
+    "website": "www.BatchUser4.nl"
+  }
+]

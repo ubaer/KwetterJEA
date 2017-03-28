@@ -1,5 +1,8 @@
 package main.java.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -50,7 +53,7 @@ public class User {
     }
 
     @ManyToMany(mappedBy = "users")
-    private List<UserGroup> groups;
+    List<UserGroup> groups;
 
     String profilePicture;
     String userName;
@@ -107,12 +110,26 @@ public class User {
         this.bio = bio;
         this.locations = locations;
         this.website = website;
+        createDate = new Date();
 
         followers = new ArrayList<>();
         follows = new ArrayList<>();
         kweets = new ArrayList<>();
         groups = new ArrayList<>();
     }
+    public User(String username, String bio, String locations, String website) {
+        this.userName = username;
+        this.bio = bio;
+        this.locations = locations;
+        this.website = website;
+        createDate = new Date();
+
+        followers = new ArrayList<>();
+        follows = new ArrayList<>();
+        kweets = new ArrayList<>();
+        groups = new ArrayList<>();
+    }
+
 
     public String getProfilePicture() {
         return profilePicture;

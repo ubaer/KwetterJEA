@@ -49,7 +49,7 @@ public class KweetTest extends TestCase  {
     }
 
     public void testAddMentions() throws Exception {
-        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, null, null);
+        Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
         User mention = new User(1, "picture.mpg", "Mimention", "mention boy","Sittard", "www.twitter.nl");
 
         ArrayList<User> mentions = new ArrayList();
@@ -62,11 +62,13 @@ public class KweetTest extends TestCase  {
     public void testAddTags() throws Exception {
         Kweet testKweet = new Kweet(0, "Kweet tekst", new Date(), testUser, new ArrayList<>(), null);
 
-        ArrayList tags = new ArrayList();
+        ArrayList<Tag> tags = new ArrayList();
         tags.addAll(Arrays.asList(new Tag("firstTag"),new Tag("secondTag")));
         testKweet.addTags(tags);
 
-        assertEquals(tags, testKweet.getTags());
+        assertEquals(tags.get(0).getName(), testKweet.getTags().get(0));
+        assertEquals(tags.get(1).getName(), testKweet.getTags().get(1));
+
     }
 
     public void testAddTag() throws Exception {
@@ -76,6 +78,6 @@ public class KweetTest extends TestCase  {
         testKweet.addTag(nieuwTag);
 
         assertEquals(1, testKweet.getTags().size());
-        assertEquals(nieuwTag, testKweet.getTags().get(0));
+        assertEquals(nieuwTag.getName(), testKweet.getTags().get(0));
     }
 }

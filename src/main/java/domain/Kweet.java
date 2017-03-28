@@ -126,7 +126,6 @@ public class Kweet {
         this.message = message;
         this.posterId = poster.getId();
         this.date = new Date();
-        this.mentions = mentions;
         this.lovers = new ArrayList<>();
 
         if (tags == null) {
