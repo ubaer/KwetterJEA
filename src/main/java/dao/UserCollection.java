@@ -100,5 +100,15 @@ public class UserCollection implements UserDao {
     public void addUserToGroup(User user, UserGroup role) {
 
     }
+
+    @Override
+    public void rebindAllUsergroups() {
+
+    }
+
+    @Override
+    public UserGroup findUserGroup(String regulars) {
+        return null;
+    }
 }
 

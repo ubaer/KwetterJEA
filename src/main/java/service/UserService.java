@@ -86,4 +86,9 @@ public class UserService {
     public void createUserGroup(UserGroup role) {
         userDao.createUserGroup(role);
     }
+    public void rebindAllUserGroups(){userDao.rebindAllUsergroups();}
+
+    public UserGroup findUserGroup(String regulars) {
+        return userDao.findUserGroup(regulars);
+    }
 }

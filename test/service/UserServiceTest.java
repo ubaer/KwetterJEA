@@ -2,6 +2,7 @@ package service;
 
 import junit.framework.TestCase;
 import main.java.domain.User;
+import main.java.domain.UserGroup;
 import main.java.service.UserService;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -49,5 +50,4 @@ public class UserServiceTest extends TestCase {
     public void testGetAllUsers() throws Exception {
 
     }
-
 }

@@ -82,4 +82,8 @@ public interface UserDao {
      * @param role
      */
     void addUserToGroup(User user, UserGroup role);
+
+    void rebindAllUsergroups();
+
+    UserGroup findUserGroup(String regulars);
 }

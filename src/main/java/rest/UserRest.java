@@ -1,6 +1,7 @@
 package main.java.rest;
 
 import main.java.domain.User;
+import main.java.domain.UserGroup;
 import main.java.service.UserService;
 
 import javax.ejb.EJB;

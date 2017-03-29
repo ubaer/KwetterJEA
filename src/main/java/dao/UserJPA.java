@@ -5,8 +5,10 @@ import main.java.domain.User;
 import main.java.domain.UserGroup;
 
 import javax.ejb.Stateless;
+import javax.json.stream.JsonGenerator;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,8 @@ public class UserJPA implements UserDao{
 
     @Override
     public User findById(long id) {
-        return em.find(User.class, id);
+        return (User) em.createQuery("SELECT t FROM User t where t.id = :value1")
+                .setParameter("value1", id).getSingleResult();
     }
 
     @Override
@@ -57,6 +60,7 @@ public class UserJPA implements UserDao{
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
         users.addAll(em.createQuery("select u from User u").getResultList());
+
         return users;
     }
 
@@ -89,7 +93,32 @@ public class UserJPA implements UserDao{
     public void addUserToGroup(User user, UserGroup role) {
         List<UserGroup> groups = user.getGroups();
         groups.add(role);
+        role.addUser(user);
         user.setGroups(groups);
+
         em.merge(user);
+        em.merge(role);
+    }
+
+    @Override
+    public void rebindAllUsergroups() {
+        em.createNativeQuery("DELETE FROM user_group").executeUpdate();
+        em.createNativeQuery("DELETE FROM user_kweet").executeUpdate();
+        em.createNativeQuery("DELETE FROM user_follows").executeUpdate();
+        em.createNativeQuery("DELETE FROM user_followers").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet_lover").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet_mention").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet_tags").executeUpdate();
+        em.createNativeQuery("DELETE FROM tag_kweet").executeUpdate();
+        em.createNativeQuery("DELETE FROM user").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet").executeUpdate();
+        em.createNativeQuery("DELETE FROM tag ").executeUpdate();
+        em.createNativeQuery("DELETE FROM usergroup ").executeUpdate();
+    }
+
+    @Override
+    public UserGroup findUserGroup(String regulars) {
+        return (UserGroup) em.createQuery("SELECT t FROM UserGroup t where t.groupName = :value1")
+                .setParameter("value1", regulars).getSingleResult();
     }
 }

@@ -1,9 +1,7 @@
 package main.java.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.*;
 
 /**
@@ -43,19 +41,22 @@ public class User {
     }
 
     private String password;
-
+    @XmlTransient
     public List<UserGroup> getGroups() {
         return groups;
     }
-
+    @XmlTransient
     public void setGroups(List<UserGroup> groups) {
         this.groups = groups;
     }
 
     @ManyToMany(mappedBy = "users")
-    List<UserGroup> groups;
+    @XmlTransient
+    private List<UserGroup> groups;
 
     String profilePicture;
+
+    @Column(unique=true)
     String userName;
 
     String bio;

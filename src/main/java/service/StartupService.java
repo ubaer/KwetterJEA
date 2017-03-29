@@ -2,6 +2,9 @@ package main.java.service;
 
 import main.java.domain.User;
 import main.java.domain.UserGroup;
+import org.glassfish.jersey.CommonProperties;
+import org.glassfish.jersey.message.GZipEncoder;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.annotation.PostConstruct;
 import javax.batch.operations.JobSecurityException;
@@ -12,9 +15,14 @@ import javax.inject.Inject;
 
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
+import javax.ws.rs.core.Feature;
+import javax.ws.rs.core.FeatureContext;
+import javax.ws.rs.ext.MessageBodyReader;
+import javax.ws.rs.ext.MessageBodyWriter;
+import javax.xml.crypto.Data;
 
 /**
- * Created by Kevin on 28-3-2017.
+ * Created by Kevin on.
  */
 @Singleton
 @Startup
@@ -31,12 +39,15 @@ public class StartupService {
 
     @PostConstruct
     private void intData() {
-        UserGroup regular = new UserGroup("regulars");
+        UserGroup regular = new UserGroup();
+        regular.setGroupName("regulars");
         userService.createUserGroup(regular);
         userService.addUser(new User("Peter", "ea72c79594296e45b8c2a296644d988581f58cfac6601d122ed0a8bd7c02e8bf"));
         User peter = userService.findByName("Peter");
         userService.addUserToGroup(peter, regular);
 
+
+        /*
         jobOperator = BatchRuntime.getJobOperator();
         try {
             execID = jobOperator.start("userimport", null);
@@ -44,5 +55,6 @@ public class StartupService {
         } catch (JobStartException | JobSecurityException e) {
             e.printStackTrace();
         }
+        */
     }
 }

@@ -3,9 +3,6 @@ package main.java.rest;
 /**
  * Created by Kevin.
  */
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
 import main.java.domain.Kweet;
 import main.java.domain.Tag;
 import main.java.service.TagService;
