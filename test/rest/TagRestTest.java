@@ -23,7 +23,7 @@ public class TagRestTest extends TestCase {
 
         mapper = new ObjectMapper();
 
-        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/tag/post/haye");
+        HttpUriRequest request = new HttpPost("http://localhost:8080/Kwetter/api/tag/haye");
         HttpClientBuilder.create().build().execute(request);
     }
 

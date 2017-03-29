@@ -11,67 +11,19 @@ import java.util.*;
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setFollowers(List<User> followers) {
-        this.followers = followers;
-    }
-
-    public void setFollows(List<User> follows) {
-        this.follows = follows;
-    }
-
-    public List<Kweet> getKweets() {
-        return kweets;
-    }
-
-    public void setKweets(List<Kweet> kweets) {
-        this.kweets = kweets;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     private String password;
-    @XmlTransient
-    public List<UserGroup> getGroups() {
-        return groups;
-    }
-    @XmlTransient
-    public void setGroups(List<UserGroup> groups) {
-        this.groups = groups;
-    }
-
-    @ManyToMany(mappedBy = "users")
-    @XmlTransient
-    private List<UserGroup> groups;
-
+    String bio;
+    String locations;
+    String website;
     String profilePicture;
+    Date createDate;
 
     @Column(unique=true)
     String userName;
 
-    String bio;
-    String locations;
-    String website;
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    Date createDate;
+    @ManyToMany(mappedBy = "users")
+    @XmlTransient
+    private List<UserGroup> groups;
 
     @OneToMany @JoinTable(name = "user_followers")
     List<User> followers;
@@ -118,6 +70,7 @@ public class User {
         kweets = new ArrayList<>();
         groups = new ArrayList<>();
     }
+
     public User(String username, String bio, String locations, String website) {
         this.userName = username;
         this.bio = bio;
@@ -131,6 +84,50 @@ public class User {
         groups = new ArrayList<>();
     }
 
+    @XmlTransient
+    public List<UserGroup> getGroups() {
+        return groups;
+    }
+    @XmlTransient
+    public void setGroups(List<UserGroup> groups) {
+        this.groups = groups;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public void setFollows(List<User> follows) {
+        this.follows = follows;
+    }
+
+    public List<Kweet> getKweets() {
+        return kweets;
+    }
+
+    public void setKweets(List<Kweet> kweets) {
+        this.kweets = kweets;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getProfilePicture() {
         return profilePicture;

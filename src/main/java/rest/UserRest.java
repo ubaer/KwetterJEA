@@ -4,12 +4,12 @@ import main.java.domain.User;
 import main.java.domain.UserGroup;
 import main.java.service.UserService;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin.
@@ -33,9 +33,21 @@ public class UserRest {
     }
 
     @GET
-    @Path("{name}")
-    public User getUserByName(@PathParam("name")String name){
+    @Path("{username}")
+    public User getUserByUsername(@PathParam("username")String name){
         return userService.findByName(name);
+    }
+
+    @GET
+    @Path("{username}/follows")
+    public List<User> getUserFollows(@PathParam("username")String username) {
+        return userService.findByName(username).getFollows();
+    }
+
+    @GET
+    @Path("{username}/followers")
+    public List<User> getUserFollowers(@PathParam("username")String username) {
+        return userService.findByName(username).getFollowers();
     }
 
     @POST
@@ -56,7 +68,19 @@ public class UserRest {
         User currentUser = userService.findByName(username);
         User toFollow = userService.findByName(followUsername);
         userService.addFollows(currentUser, toFollow);
+        userService.addFollower(toFollow, currentUser);
     }
+
+    @POST
+    @Path("{username}/usergroup/{usergroup}")
+    public void addUsergroupToUser(@PathParam("username")String username,@PathParam("usergroup") String usergroup){
+        User currentUser = userService.findByName(username);
+        UserGroup userGroup = userService.findUserGroup(usergroup);
+        userGroup.setGroupName(usergroup);
+
+        userService.addUserToGroup(currentUser, userGroup);
+    }
+
     @DELETE
     @Path("{username}")
     public void deleteUser(@PathParam("username")String username){

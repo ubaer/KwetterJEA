@@ -47,6 +47,9 @@ public class TagJPA implements TagDao {
 
     @Override
     public List<Kweet> getAllKweetsByTag(Tag tag) {
-        return null;
+        ArrayList<Kweet> results = new ArrayList();
+        results.addAll(em.createQuery("select t.kweets from Tag t where t.name = :value1")
+                .setParameter("value1", tag.getName()).getResultList());
+        return results;
     }
 }

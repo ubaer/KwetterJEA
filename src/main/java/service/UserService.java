@@ -76,19 +76,41 @@ public class UserService {
         return userDao.getAllUsers();
     }
 
+    /**
+     * Adds a follows to the user
+     * @param currentUser
+     * @param toFollow
+     */
     public void addFollows(User currentUser, User toFollow) {
         userDao.addFollows(currentUser, toFollow);
     }
 
+    /**
+     * Adds a Usergroup to the user
+     * @param user
+     * @param role
+     */
     public void addUserToGroup(User user, UserGroup role) { userDao.addUserToGroup(user, role);
     }
 
+    /**
+     * Finds a UserGroup by name
+     * @param userGroupName
+     * @return
+     */
+    public UserGroup findUserGroup(String userGroupName){
+       return userDao.findUserGroup(userGroupName);
+    }
+
+    /**
+     * Creates a new Usergroup
+     * @param role
+     */
     public void createUserGroup(UserGroup role) {
         userDao.createUserGroup(role);
     }
-    public void rebindAllUserGroups(){userDao.rebindAllUsergroups();}
 
-    public UserGroup findUserGroup(String regulars) {
-        return userDao.findUserGroup(regulars);
+    public void addFollower(User currentUser, User follower){
+        userDao.addFollower(currentUser, follower);
     }
 }

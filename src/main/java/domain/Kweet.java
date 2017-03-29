@@ -16,18 +16,13 @@ public class Kweet {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
     String message;
-
     Date date;
-
-
+    long posterId;
 
     public long getPosterId() {
         return posterId;
     }
-
-    long posterId;
 
     public void setId(long id) {
         this.id = id;
@@ -53,8 +48,6 @@ public class Kweet {
         this.lovers = lovers;
     }
 
-
-
     public String getMessage() {
         return message;
     }
@@ -66,7 +59,6 @@ public class Kweet {
     public Date getDate() {
         return date;
     }
-
 
     public void setTags(List<String> tags) {
         this.tags = tags;
@@ -98,10 +90,8 @@ public class Kweet {
             this.tags.add(tag.getName());
             tag.addKweet(this);
         }
-
         poster.addKweet(this);
     }
-
     public Kweet(long id, String message, Date date, User poster, ArrayList<Tag> tags, ArrayList<User> mentions) {
         this.id = id;
         this.message = message;

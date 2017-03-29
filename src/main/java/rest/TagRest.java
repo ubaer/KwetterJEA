@@ -32,25 +32,31 @@ public class TagRest {
 
     @GET
     @Path("{tagName}")
+    public Tag getTag(@PathParam("tagName")String tagName){
+        Tag foundTag = tagService.getTagByName(tagName);
+        return foundTag;
+    }
+
+    @GET
+    @Path("{tagName}/kweets")
     public List<Kweet> getKweetsByTag(@PathParam("tagName")String tagName){
         Tag foundTag = tagService.getTagByName(tagName);
         if(foundTag != null){
-            return tagService.getAllKweetsByTag(foundTag);
+            return foundTag.getKweets();
         }
-         else {
+        else {
             return new ArrayList<>();
         }
     }
-
     @POST
-    @Path("post/{tagName}")
+    @Path("{tagName}")
     public void addNewTag(@PathParam("tagName")String tagName){
         Tag tag = new Tag(tagName);
         tagService.addTag(tag);
     }
 
-    @POST
-    @Path("delete/{tagName}")
+    @DELETE
+    @Path("{tagName}")
     public void deleteTag(@PathParam("tagName")String tagName){
         Tag tag = tagService.getTagByName(tagName);
         if(tag != null){

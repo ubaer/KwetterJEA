@@ -83,7 +83,17 @@ public interface UserDao {
      */
     void addUserToGroup(User user, UserGroup role);
 
-    void rebindAllUsergroups();
+    /**
+     * Finds a usergroup by its name
+     * @param userGroupName
+     * @return
+     */
+    UserGroup findUserGroup(String userGroupName);
 
-    UserGroup findUserGroup(String regulars);
+    /**
+     * Adds a follower to the currentuser
+     * @param currentUser
+     * @param follower
+     */
+    void addFollower(User currentUser, User follower);
 }

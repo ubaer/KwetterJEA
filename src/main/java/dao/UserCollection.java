@@ -102,12 +102,7 @@ public class UserCollection implements UserDao {
     }
 
     @Override
-    public void rebindAllUsergroups() {
-
-    }
-
-    @Override
-    public UserGroup findUserGroup(String regulars) {
+    public UserGroup findUserGroup(String userGroupName) {
         return null;
     }
 }

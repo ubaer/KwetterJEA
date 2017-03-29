@@ -64,5 +64,4 @@ public class KweetJPA implements KweetDao {
         foundKweet.addMention(mention);
         em.merge(foundKweet);
     }
-
 }

@@ -11,28 +11,28 @@ import java.util.List;
 @Entity
 public class Tag {
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setKweets(List<Kweet> kweets) {
-        this.kweets = kweets;
-    }
-
     @Id
     String name;
     @OneToMany
     List<Kweet> kweets;
-
-    public String getName() {
-        return name;
-    }
 
     public Tag(){}
 
     public Tag(String name) {
         this.name = name;
         kweets = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setKweets(List<Kweet> kweets) {
+        this.kweets = kweets;
     }
 
     public void addKweet(Kweet kweet){

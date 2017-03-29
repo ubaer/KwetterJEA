@@ -5,11 +5,8 @@ import main.java.domain.User;
 import main.java.domain.UserGroup;
 
 import javax.ejb.Stateless;
-import javax.json.stream.JsonGenerator;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,24 +98,14 @@ public class UserJPA implements UserDao{
     }
 
     @Override
-    public void rebindAllUsergroups() {
-        em.createNativeQuery("DELETE FROM user_group").executeUpdate();
-        em.createNativeQuery("DELETE FROM user_kweet").executeUpdate();
-        em.createNativeQuery("DELETE FROM user_follows").executeUpdate();
-        em.createNativeQuery("DELETE FROM user_followers").executeUpdate();
-        em.createNativeQuery("DELETE FROM kweet_lover").executeUpdate();
-        em.createNativeQuery("DELETE FROM kweet_mention").executeUpdate();
-        em.createNativeQuery("DELETE FROM kweet_tags").executeUpdate();
-        em.createNativeQuery("DELETE FROM tag_kweet").executeUpdate();
-        em.createNativeQuery("DELETE FROM user").executeUpdate();
-        em.createNativeQuery("DELETE FROM kweet").executeUpdate();
-        em.createNativeQuery("DELETE FROM tag ").executeUpdate();
-        em.createNativeQuery("DELETE FROM usergroup ").executeUpdate();
+    public UserGroup findUserGroup(String userGroupName) {
+        return (UserGroup) em.createQuery("SELECT t FROM UserGroup t where t.groupName = :value1")
+                .setParameter("value1", userGroupName).getSingleResult();
     }
 
     @Override
-    public UserGroup findUserGroup(String regulars) {
-        return (UserGroup) em.createQuery("SELECT t FROM UserGroup t where t.groupName = :value1")
-                .setParameter("value1", regulars).getSingleResult();
+    public void addFollower(User currentUser, User follower) {
+        currentUser.addFollower(follower);
+        em.merge(currentUser);
     }
 }
