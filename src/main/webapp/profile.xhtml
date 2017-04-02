@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+    <h1>#{profile.userName}</h1>
+    <p:graphicImage value="resources/images/#{profile.userPicture}" />
+    <p:panel id="bioPanel" header="Bio:" style="margin-bottom:10px;">
+        Locatie: #{profile.userLocation}<br/>
+        #{profile.userBio}
+    </p:panel>
+
+    <p:dataTable value="#{profile.userKweets}" var="userKweet">
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Kweets"></h:outputText>
+            </f:facet>
+            <h:outputText value="#{userKweet.date}"></h:outputText><br/>
+            <h:outputText value="#{userKweet.message}"></h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable value="#{profile.userFollowers}" var="userFollower">
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Followers"></h:outputText>
+            </f:facet>
+            <h:outputText value="#{userFollower.userName}"></h:outputText><br/>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable value="#{profile.userFollows}" var="userFollows">
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Follows"></h:outputText>
+            </f:facet>
+            <h:outputText value="#{userFollows.userName}"></h:outputText><br/>
+        </p:column>
+    </p:dataTable>
+
+</h:body>
+</html>

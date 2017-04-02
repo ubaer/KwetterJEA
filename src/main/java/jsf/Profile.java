@@ -47,6 +47,11 @@ public class Profile implements Serializable {
     public String getUserLocation(){
         return loggedInUser.getLocations();
     }
+
+    public String getUserPicture(){
+        return loggedInUser.getProfilePicture();
+    }
+
     public List<Kweet> getUserKweets(){
         return loggedInUser.getKweets();
     }
@@ -57,5 +62,11 @@ public class Profile implements Serializable {
 
     public List<User> getUserFollowers(){
         return loggedInUser.getFollowers();
+    }
+    public List<Kweet> getUserTimeline(){
+        return loggedInUser.getTimeLine(10);
+    }
+    public User getUserById(long id){
+        return userService.findById(id);
     }
 }

@@ -88,13 +88,9 @@ public class UserJPA implements UserDao{
 
     @Override
     public void addUserToGroup(User user, UserGroup role) {
-        List<UserGroup> groups = user.getGroups();
-        groups.add(role);
-        role.addUser(user);
-        user.setGroups(groups);
-
-        em.merge(user);
-        em.merge(role);
+        UserGroup userGroup = findUserGroup(role.getGroupName());
+        userGroup.addUser(user);
+        em.persist(userGroup);
     }
 
     @Override
