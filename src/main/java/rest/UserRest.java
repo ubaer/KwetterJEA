@@ -61,6 +61,8 @@ public class UserRest {
     public void createUser(@PathParam("username")String username){
         User newUser = new User(username);
         userService.addUser(newUser);
+        UserGroup group = userService.findUserGroup("regulars");
+        userService.addUserToGroup(newUser, group);
     }
     @POST
     @Path("{username}/follow/{follow}")

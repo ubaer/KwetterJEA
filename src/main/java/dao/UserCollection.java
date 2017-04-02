@@ -105,5 +105,10 @@ public class UserCollection implements UserDao {
     public UserGroup findUserGroup(String userGroupName) {
         return null;
     }
+
+    @Override
+    public void addFollower(User currentUser, User follower) {
+
+    }
 }
 
