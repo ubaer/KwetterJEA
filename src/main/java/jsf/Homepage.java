@@ -1,6 +1,8 @@
 package main.java.jsf;
 
+import main.java.domain.Tag;
 import main.java.domain.User;
+import main.java.service.TagService;
 import main.java.service.UserService;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +25,9 @@ public class Homepage implements Serializable {
     @Inject
     UserService userService;
 
+    @Inject
+    TagService tagService;
+
     User loggedInUser;
 
     public Homepage(){}
@@ -43,5 +48,9 @@ public class Homepage implements Serializable {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.invalidateSession();
         ec.redirect(ec.getRequestContextPath() + "/logout.xhtml");
+    }
+
+    public List<Tag> getAllTags(){
+        return tagService.getAllTags();
     }
 }

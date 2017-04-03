@@ -11,6 +11,16 @@
 <h:head>
 </h:head>
 <h:body>
+
+    <p:dataTable value="#{homepage.allTags}" var="tagItem">
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Whats happening"/>
+            </f:facet>
+            <h:outputText value="#{tagItem.name}"/><br/>
+        </p:column>
+    </p:dataTable>
+
     <p:dataTable value="#{profile.userTimeline}" var="userKweet">
         <p:column>
             <f:facet name="header">

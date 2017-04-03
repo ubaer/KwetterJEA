@@ -11,7 +11,7 @@
 </h:head>
 <h:body>
     <h1>#{profile.userName}</h1>
-    <p:graphicImage value="resources/images/#{profile.userPicture}" />
+    <h:graphicImage library="images" name="#{profile.userPicture}" />
     <p:panel id="bioPanel" header="Bio:" style="margin-bottom:10px;">
         Locatie: #{profile.userLocation}<br/>
         #{profile.userBio}
