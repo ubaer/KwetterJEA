@@ -1,7 +1,9 @@
 package main.java.jsf;
 
+import main.java.domain.Kweet;
 import main.java.domain.Tag;
 import main.java.domain.User;
+import main.java.service.KweetService;
 import main.java.service.TagService;
 import main.java.service.UserService;
 
@@ -28,8 +30,20 @@ public class Homepage implements Serializable {
     @Inject
     TagService tagService;
 
+    @Inject
+    KweetService kweetService;
+
     User loggedInUser;
 
+    public String getKweetText() {
+        return kweetText;
+    }
+
+    public void setKweetText(String kweetText) {
+        this.kweetText = kweetText;
+    }
+
+    String kweetText;
     public Homepage(){}
 
     @PostConstruct
@@ -45,12 +59,22 @@ public class Homepage implements Serializable {
 
     public void logout(ActionEvent actionEvent) throws IOException {
         System.out.println("logout pressed");
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.invalidateSession();
-        ec.redirect(ec.getRequestContextPath() + "/logout.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "logout.xhtml");
     }
 
     public List<Tag> getAllTags(){
         return tagService.getAllTags();
+    }
+
+    public void postKweet(){
+        Kweet newKweet = new Kweet(loggedInUser, kweetText);
+        kweetService.addKweet(newKweet);
+        try {
+            logout(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "index.xhtml");
     }
 }

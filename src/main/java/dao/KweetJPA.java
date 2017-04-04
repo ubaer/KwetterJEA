@@ -2,9 +2,11 @@ package main.java.dao;
 
 import main.java.domain.Kweet;
 import main.java.domain.User;
+import main.java.service.UserService;
 
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -23,9 +25,15 @@ public class KweetJPA implements KweetDao {
     @PersistenceContext(unitName = "KwetterPU")
     private EntityManager em;
 
+    @Inject
+    UserService userService;
+
     @Override
     public void addKweet(Kweet kweet) {
         em.persist(kweet);
+        User persistUser = userService.findById(kweet.getPosterId());
+        persistUser.addKweet(kweet);
+        em.persist(persistUser);
     }
 
     @Override

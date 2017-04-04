@@ -12,10 +12,18 @@
 </h:head>
 <h:body>
 
+    <h:form>
+        <p:panel id="whatsHappening" header="What's Happening" style="margin-bottom:10px;">
+            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="255" counterTemplate="{0} characters remaining." autoResize="false" value="#{homepage.kweetText}"/>
+            <h:outputText id="display" />
+            <p:commandButton value="Post Kweet!" id="postKweet" styleClass="ui-priority-primary" actionListener="#{homepage.postKweet}"  ajax="false" ></p:commandButton>
+        </p:panel>
+    </h:form>
+
     <p:dataTable value="#{homepage.allTags}" var="tagItem">
         <p:column>
             <f:facet name="header">
-                <h:outputText value="Whats happening"/>
+                <h:outputText value="Trending kweets"/>
             </f:facet>
             <h:outputText value="#{tagItem.name}"/><br/>
         </p:column>
