@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>kwetter</groupId>
-  <artifactId>kwetter</artifactId>
+  <groupId>Kwetter</groupId>
+  <artifactId>Kwetter</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Kwetter Maven Webapp</name>
@@ -99,7 +99,7 @@
 
   </dependencies>
   <build>
-    <finalName>kwetter</finalName>
+    <finalName>Kwetter</finalName>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
@@ -108,22 +108,6 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.spotify</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <version>0.4.11</version>
-        <configuration>
-          <imageName>${project.artifactId}</imageName>
-          <dockerDirectory>src/main</dockerDirectory>
-          <resources>
-            <resource>
-              <targetPath>/</targetPath>
-              <directory>${project.build.directory}</directory>
-              <include>${project.build.finalName}.jar</include>
-            </resource>
-          </resources>
         </configuration>
       </plugin>
     </plugins>

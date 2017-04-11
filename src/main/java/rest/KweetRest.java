@@ -71,10 +71,11 @@ public class KweetRest {
 
     @POST
     @Path("{username}/{message}")
-    public void addKweet(@PathParam("username") String username, @PathParam("message") String message){
+    public Kweet addKweet(@PathParam("username") String username, @PathParam("message") String message){
         User user = userService.findByName(username);
         Kweet newKweet = new Kweet(user, message);
         kweetService.addKweet(newKweet);
+        return newKweet;
     }
 
     @DELETE

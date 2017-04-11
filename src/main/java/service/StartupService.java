@@ -39,6 +39,7 @@ public class StartupService {
 
     @PostConstruct
     private void intData() {
+/*
         UserGroup regular = new UserGroup();
         regular.setGroupName("regulars");
         userService.createUserGroup(regular);

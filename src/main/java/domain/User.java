@@ -25,11 +25,12 @@ public class User {
     @XmlTransient
     private List<UserGroup> groups;
 
-    @OneToMany @JoinTable(name = "user_followers")
+    @OneToMany(fetch = FetchType.LAZY) @JoinTable(name = "user_followers")
     List<User> followers;
-    @OneToMany @JoinTable( name = "user_follows")
+    @OneToMany(fetch = FetchType.LAZY) @JoinTable( name = "user_follows")
+    @XmlTransient
     List<User> follows;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     List<Kweet> kweets;
 
     public User() {
@@ -109,6 +110,7 @@ public class User {
         this.followers = followers;
     }
 
+    @XmlTransient
     public void setFollows(List<User> follows) {
         this.follows = follows;
     }

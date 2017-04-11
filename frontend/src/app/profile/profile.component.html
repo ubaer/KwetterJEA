@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+</head>
+<body>
+<p-messages [value]="msgs"></p-messages>
+<h1>  Username: {{user?.userName}}<br></h1>
+<p-panel header="Userinfo" [toggleable]="true">
+  Create date: {{user?.createDate}}
+</p-panel>
+
+  <br>
+
+<p-panel header="Kweets" [toggleable]="true">
+  <p-dataTable [value]="kweets" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-column field="message" [filter]="true" filterPlaceholder="Search"  header="Kweet message"></p-column>
+  </p-dataTable>
+</p-panel>
+
+<p-panel header="Followers" [toggleable]="true">
+  <p-dataTable [value]="followers" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-column field="userName" [filter]="true" filterPlaceholder="Search"  header="Followers"></p-column>
+  </p-dataTable>
+</p-panel>
+
+
+</body>
+</html>

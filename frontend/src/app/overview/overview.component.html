@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Overview</title>
+</head>
+<body>
+<p-messages [value]="msgs"></p-messages>
+<p-panel header="What's happening?" [toggleable]="true">
+    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="kweetMessage" ></textarea>
+    <br><br>
+
+    <button type="button" pButton label="Post Kweet!" (click)="addKweet()"></button>
+  </p-panel>
+
+  <br>
+
+  <p-panel header="Timeline" [toggleable]="true">
+    <p-dataTable [value]="kweets" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+      <p-column field="message" [filter]="true" filterPlaceholder="Search"  header="Kweet message"></p-column>
+    </p-dataTable>
+  </p-panel>
+
+  <br>
+
+
+</body>
+</html>

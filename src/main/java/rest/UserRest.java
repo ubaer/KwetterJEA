@@ -26,6 +26,7 @@ public class UserRest {
         return userService.getAllUsers();
     }
 
+
     @GET
     @Path("id/{id}")
     public User getUserById(@PathParam("id")long id){
@@ -35,6 +36,7 @@ public class UserRest {
     @GET
     @Path("{username}")
     public User getUserByUsername(@PathParam("username")String name){
+        System.out.println(userService.findByName(name).getBio() + "bio enzo");
         return userService.findByName(name);
     }
 

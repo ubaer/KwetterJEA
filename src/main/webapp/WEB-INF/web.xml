@@ -14,7 +14,7 @@
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
             <description/>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/Kwetter/</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>regular_role</role-name>

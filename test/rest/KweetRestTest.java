@@ -10,6 +10,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import javax.validation.constraints.AssertTrue;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -41,8 +43,8 @@ public class KweetRestTest extends TestCase {
         assertTrue(kweets.size()>0);
     }
 
-    public void testGetAllKweetsByUser() throws Exception {
 
+    public void testGetAllKweetsByUser() throws Exception {
     }
 
     public void testGetKweet() throws Exception {
