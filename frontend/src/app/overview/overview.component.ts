@@ -16,9 +16,6 @@ import {User} from "../profile/User";
 export class OverviewComponent implements OnInit {
   name = 'Angular';
   kweetMessage: string = "";
-  kweetPoster: string = "Peter";
-  slider: number = 10;
-  licensePlate: string;
   kweets: Kweet[] = [];
   msgs: Message[] = [];
 

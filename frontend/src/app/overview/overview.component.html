@@ -6,7 +6,9 @@
 </head>
 <body>
 <p-messages [value]="msgs"></p-messages>
-<p-panel header="What's happening?" [toggleable]="true">
+
+
+<p-panel header="{{'OVERVIEW.WHATISUP' | translate}}" [toggleable]="true">
     <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="kweetMessage" ></textarea>
     <br><br>
 
@@ -15,7 +17,7 @@
 
   <br>
 
-  <p-panel header="Timeline" [toggleable]="true">
+  <p-panel header="{{'OVERVIEW.TIMELINE' | translate}}" [toggleable]="true">
     <p-dataTable [value]="kweets" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
       <p-column field="message" [filter]="true" filterPlaceholder="Search"  header="Kweet message"></p-column>
     </p-dataTable>

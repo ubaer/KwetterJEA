@@ -1,7 +1,3 @@
-/**
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
- */
 (function (global) {
   System.config({
     paths: {
@@ -12,6 +8,9 @@
     map: {
       // our app is within the app folder
       'app': 'app',
+
+      // translate module
+      'ng2-translate': 'node_modules/ng2-translate/bundles/ng2-translate.umd.js',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -46,6 +45,9 @@
       },
       primeng: {
         defaultExtension: 'js'
+      },
+      'ng2-translate': {
+        defaultExtension: 'js',
       }
     }
   });

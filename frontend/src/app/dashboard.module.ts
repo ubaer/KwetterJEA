@@ -5,6 +5,7 @@ import { DashboardComponent }  from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { OverviewModule } from './overview/overview.module';
 import {ProfileModule} from "./profile/profile.module";
+import {TranslateModule} from "ng2-translate";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {ProfileModule} from "./profile/profile.module";
     BrowserModule,
     DashboardRoutingModule,
     OverviewModule,
-    ProfileModule
+    ProfileModule,
+    TranslateModule.forRoot()
   ],
 
   declarations: [ DashboardComponent ],

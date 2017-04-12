@@ -9,6 +9,7 @@ import {
 }  from 'primeng/primeng';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateModule} from "ng2-translate";
 
 @NgModule({
   imports:      [
@@ -22,9 +23,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DataTableModule,
     MessagesModule,
     ConfirmDialogModule,
-    PaginatorModule
+    PaginatorModule,
+    TranslateModule
   ],
   declarations: [ OverviewComponent ],
-  providers:    [ OverviewService, ConfirmationService ]
+  providers:    [ OverviewService, ConfirmationService]
 })
 export class OverviewModule { }

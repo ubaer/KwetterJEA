@@ -15,6 +15,7 @@ export class OverviewService {
   addKweet(kweet: string) : Observable<Kweet>{
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
+    debugger;
     return this.http.post(this.baseUrl + "/kweet/" + this.user +"/" + kweet, {}, options).map(this.extractData);
   }
 

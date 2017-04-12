@@ -8,6 +8,13 @@
 <nav>
   <a routerLink="overview" routerLinkActive="active">Overview</a>
   <a routerLink="profile" routerLinkActive="active">Profile</a>
+
+  <div>
+
+      <select #langSelect (change)="translate.use(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+      </select>
+  </div>
 </nav>
 <router-outlet></router-outlet>
 </body>
