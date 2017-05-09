@@ -2,6 +2,9 @@ package main.java.service;
 
 import main.java.domain.User;
 import main.java.domain.UserGroup;
+import main.java.jms.JMSDispatcher;
+import com.rabbitmq.client.*;
+
 import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.message.GZipEncoder;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -39,6 +42,9 @@ public class StartupService {
 
     @PostConstruct
     private void intData() {
+
+        JMSDispatcher.getInstance();
+        System.out.println("startup Initiated");
 /*
         UserGroup regular = new UserGroup();
         regular.setGroupName("regulars");

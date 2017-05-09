@@ -15,15 +15,14 @@ export class OverviewService {
   addKweet(kweet: string) : Observable<Kweet>{
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    debugger;
     return this.http.post(this.baseUrl + "/kweet/" + this.user +"/" + kweet, {}, options).map(this.extractData);
   }
 
-  private extractData(res: Response) {
+  public extractData(res: Response) {
     let body = res.text();
-    debugger;
     return JSON.parse(body) || {};
   }
+
 
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
@@ -40,7 +39,7 @@ export class OverviewService {
   }
 
   getTimeline(): Observable<Kweet[]>{
-    return Observable.interval(10000)
+    return Observable.interval(2000)
       .switchMap(() => this.http.get(this.baseUrl + "/kweet/")
         .map(this.extractData)
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')));

@@ -25,7 +25,7 @@ public class KweetJPATest extends TestCase {
 
     public void testAddKweet() throws Exception {
 
-        kweetJPA.addKweet(new Kweet(peterPan, "aight"));
+        kweetJPA.addKweet(new Kweet(peterPan, "handleOnMessage"));
         int currentAmountOfKweets = kweetJPA.getAllKweets().size();
         kweetJPA.addKweet(new Kweet(peterPan, "Add kweet test"));
         int newAmountOfKweets = kweetJPA.getAllKweets().size();

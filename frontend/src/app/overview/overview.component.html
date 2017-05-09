@@ -6,8 +6,6 @@
 </head>
 <body>
 <p-messages [value]="msgs"></p-messages>
-
-
 <p-panel header="{{'OVERVIEW.WHATISUP' | translate}}" [toggleable]="true">
     <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="kweetMessage" ></textarea>
     <br><br>
@@ -22,9 +20,8 @@
       <p-column field="message" [filter]="true" filterPlaceholder="Search"  header="Kweet message"></p-column>
     </p-dataTable>
   </p-panel>
-
-  <br>
-
-
+<br>
+<br>
+<br>
 </body>
 </html>
